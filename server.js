@@ -12,11 +12,12 @@ app.get('/test', function (req, res) {
   res.send('Hello World!')
 })
 
-io.on('connection', function (socket) {
-  socket.on('message', function (message) {
-    console.log(message)
-  })
-})
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
 
 http.listen(8200, function () {
   console.log('listening on *:8200')
