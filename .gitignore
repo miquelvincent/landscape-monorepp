@@ -1,0 +1,16 @@
+.idea
+.idea/*
+.tern-port
+.history
+
+node_modules
+node_modules/*
+
+.nyc_output
+coverage
+
+etc
+.lvimrc
+
+.vscode/
+.cache/

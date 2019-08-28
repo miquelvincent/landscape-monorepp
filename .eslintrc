@@ -1,0 +1,13 @@
+{
+    "extends": "standard",
+    "env": {
+        "node": true
+    },
+    "parserOptions": {
+        "sourceType": "script",
+        "impliedStrict": false
+    },
+    "rules": {
+        "strict": "error"
+    }
+}
