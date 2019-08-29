@@ -1,5 +1,4 @@
 /* eslint-disable no-path-concat */
-'use strict'
 
 const express = require('express')
 const app = express()
@@ -8,17 +7,27 @@ var io = require('socket.io')(http)
 
 app.use('/', express.static('./dist'))
 
-app.get('/test', function (req, res) {
-  res.send('Hello World!')
-})
+function sendData (data, pos) {
+  io.emit('Data', data[pos])
+}
 
-io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-});
+const dataReader = (delay, data, pos = -1) => {
+  const delayReader = setInterval(() => {
+    pos = pos + 1
+    if (pos >= data.length) {
+      // clearInterval(delayReader)
+      pos = 0
+      sendData(data, pos)
+    } else {
+      sendData(data, pos)
+    }
+  }, delay)
+  return delayReader
+}
 
-http.listen(8200, function () {
-  console.log('listening on *:8200')
+const data = [1, 3, 6, 9]
+
+http.listen(8200, () => {
+  dataReader(1000, data)
+  console.log('http://localhost:8200')
 })

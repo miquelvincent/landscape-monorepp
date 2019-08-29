@@ -1,4 +1,4 @@
-'use strict'
+
 const pixel = require('node-pixel')
 const five = require('johnny-five')
 
