@@ -1,5 +1,5 @@
 /* eslint-disable no-path-concat */
-
+const puppeteer = require('puppeteer')
 const express = require('express')
 const app = express()
 var http = require('http').createServer(app)
@@ -25,9 +25,16 @@ const dataReader = (delay, data, pos = -1) => {
   return delayReader
 }
 
-const data = [1, 3, 6, 9]
+const data = [0, 1, 2, 3, 4, 5]
+
+const open = async () => {
+  const browser = await puppeteer.launch({ headless: false })
+  const page = await browser.newPage()
+  await page.goto('http://localhost:8200')
+}
 
 http.listen(8200, () => {
   dataReader(1000, data)
+  open()
   console.log('http://localhost:8200')
 })

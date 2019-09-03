@@ -5,12 +5,12 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node server.js",
+    "server": "nodemon server.js",
     "build": "parcel build ./sound/index.html /build",
-    "dev": "parcel ./sound/index.html",
-    "light": "node ./light/index.js",
-    "start": "concurrently \"yarn server\" \"yarn dev\"",
-    "start:all": "concurrently \"yarn server\" \"yarn dev\" \"yarn light\""
+    "sound": "parcel ./sound/index.html",
+    "light": "nodemon ./light/index.js",
+    "start": "concurrently \"yarn server\" \"yarn sound\"",
+    "start:all": "concurrently \"yarn server\" \"yarn sound\" \"yarn light\""
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "http": "^0.0.0",
     "johnny-five": "^1.3.0",
     "node-pixel": "^0.10.2",
+    "puppeteer": "^1.19.0",
     "socket.io": "^2.2.0",
     "tone": "^13.8.25"
   },
@@ -32,6 +33,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "express": "^4.17.1",
+    "nodemon": "^1.19.1",
     "parcel-bundler": "^1.12.3"
   }
 }
