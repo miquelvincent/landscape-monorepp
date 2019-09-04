@@ -28,7 +28,7 @@ const dataReader = (delay, data, pos = -1) => {
 const data = [0, 1, 2, 3, 4, 5]
 
 const open = async () => {
-  const browser = await puppeteer.launch({ headless: false })
+  const browser = await puppeteer.launch({ headless: false, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   await page.goto('http://localhost:8200')
 }
