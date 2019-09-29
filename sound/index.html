@@ -1,5 +1,29 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="./styles.scss" />
+    <script>
+      window.onload = function() {
+        var context = new AudioContext();
+      };
+    </script>
+  </head>
   <body>
-    <script src="./index.js"></script>  
+    <div>
+      <div class="main">
+        <div id="start" class="start">Play</div>
+        <div class="stop">Stop</div>
+      </div>
+    </div>
+
+    <script>
+      document.documentElement.addEventListener("mousedown", function() {
+        mouse_IsDown = true;
+        if (Tone.context.state !== "running") {
+          Tone.context.resume();
+        }
+      });
+      setTimeout(() => document.getElementById("start").click(), 3000);
+    </script>
+    <script src="./compo.js"></script>
   </body>
 </html>
