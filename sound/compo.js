@@ -1,12 +1,4 @@
 import Tone from 'tone'
-import StartAudioContext from 'startaudiocontext'
-document.documentElement.ondragstart = function () { return (false) }
-var mouse_IsDown = false
-document.documentElement.addEventListener('mousedown', function () { mouse_IsDown = true })
-document.documentElement.addEventListener('mouseup', function () { mouse_IsDown = false })
-
-// Initialize Tone.js Synthesizer
-StartAudioContext(Tone.context)
 
 const startBtn = document.querySelector('.start')
 const stopBtn = document.querySelector('.stop')

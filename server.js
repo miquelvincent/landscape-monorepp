@@ -1,5 +1,5 @@
 /* eslint-disable no-path-concat */
-const puppeteer = require('puppeteer-firefox')
+const puppeteer = require('puppeteer')
 const express = require('express')
 const app = express()
 var http = require('http').createServer(app)
@@ -28,7 +28,7 @@ const dataReader = (delay, data, pos = -1) => {
 const data = [0, 1, 2, 3, 4, 5]
 
 const open = async () => {
-  const browser = await puppeteer.launch({ headless: false })
+  const browser = await puppeteer.launch({executablePath:'/usr/bin/chromium-browser', headless: false,ignoreDefaultArgs: ['--mute-audio'], args:['--no-sandbox', '--disable-setuid-sandbox', '--autoplay-policy=no-user-gesture-required']})
   const page = await browser.newPage()
   await page.goto('http://localhost:1234')
 }

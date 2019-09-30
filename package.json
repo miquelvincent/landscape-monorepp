@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "DISPLAY=:1 nodemon server.js",
+    "server": "vncserver && DISPLAY=:1 nodemon server.js",
     "build": "parcel build ./sound/index.html /build",
     "sound": "parcel ./sound/index.html",
     "light": "nodemon ./light/index.js",
