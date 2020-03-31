@@ -14,16 +14,6 @@
         <div class="stop">Stop</div>
       </div>
     </div>
-
-    <script>
-      document.documentElement.addEventListener("mousedown", function() {
-        mouse_IsDown = true;
-        if (Tone.context.state !== "running") {
-          Tone.context.resume();
-        }
-      });
-      setTimeout(() => document.getElementById("start").click(), 3000);
-    </script>
-    <script src="./compo.js"></script>
+    <script src="./index.js"></script>
   </body>
 </html>

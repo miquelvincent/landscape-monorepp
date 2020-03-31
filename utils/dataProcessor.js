@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
-'use strict'
-const data = require('../mock')
-const sunActivity = data.map(el => el.radioActivity)
+
+// const marsActivity = data.map(el => el.radioActivity)
 
 /**
  * Take all data sun activity and compute average, higher and lower getLower
@@ -22,10 +21,8 @@ function getLower (data) {
  * Range values from 0 to 100
  */
 
-const higher = getHigher(sunActivity)
-const lower = getLower(sunActivity)
-
-function mapToRange (val, in_min, in_max, out_min, out_max) {
-  return ((val - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+export function mapToRange (val, data, out_min, out_max) {
+  return ((val - Math.min(...data)) * (out_max - out_min)) / (Math.max(...data) - Math.min(...data)) + out_min
 }
-const range = sunActivity.map(el => mapToRange(el, lower, higher, 0, 100))
+
+// const range = marsActivity.map(el => mapToRange(el, marsActivity, 0, 100))

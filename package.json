@@ -2,15 +2,15 @@
   "name": "landscape-monorepo",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "vncserver && DISPLAY=:1 nodemon server.js",
-    "build": "parcel build ./sound/index.html /build",
-    "sound": "parcel ./sound/index.html",
+    "headlessBrowser": "DISPLAY=:1 nodemon ./server/headlessBrowser.js",
+    "build": "parcel build ./client/index.html /build",
+    "app": "parcel ./client/index.html",
     "light": "nodemon ./light/index.js",
-    "start": "concurrently \"yarn server\" \"yarn sound\"",
-    "start:all": "concurrently \"yarn server\" \"yarn sound\" \"yarn light\""
+    "server": "nodemon ./server/index.js",
+    "start": "concurrently \"yarn app\" \"yarn headlessBrowser\"  \"yarn server\"",
+    "start:all": "concurrently \"yarn app\" \"yarn headlessBrowser\" \"yarn server\" \"yarn light\""
   },
   "keywords": [],
   "author": "",
@@ -21,13 +21,9 @@
     "http": "^0.0.0",
     "johnny-five": "^1.3.0",
     "node-pixel": "git+https://github.com/ajfisher/node-pixel.git#j5-firmata-upg",
-    "puppeteer": "^1.19.0",
-    "puppeteer-firefox": "^0.5.0",
-    "puppeteer-fx": "^0.0.4",
+    "puppeteer": "^2.1.1",
     "socket.io": "^2.2.0",
-    "startaudiocontext": "^1.2.1",
-    "tone": "^13.8.25",
-    "web-audio-engine": "^0.13.4"
+    "tone": "^13.8.25"
   },
   "devDependencies": {
     "eslint": "^6.2.2",
@@ -38,7 +34,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "express": "^4.17.1",
     "nodemon": "^1.19.1",
-    "parcel-bundler": "^1.12.3",
+    "parcel-bundler": "^1.12.4",
     "sass": "^1.22.12"
   }
 }
