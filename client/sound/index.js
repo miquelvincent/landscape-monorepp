@@ -129,7 +129,7 @@ export default () => {
     if (counter === 15) {
       index = (index + 1) % 7
       const currTempVal = averageTemp[index]
-      socket.emit('currTempVal', { currTempVal, index })
+      socket.emit('currTempVal', { currTempVal, averageTemp, index })
       note1 = mapToRange(currTempVal, averageTemp, 200, 300)
       note2 = mapToRange(currTempVal, averageTemp, 300, 400)
       note3 = mapToRange(currTempVal, averageTemp, 100, 200)
@@ -149,8 +149,8 @@ export default () => {
       sustain = mapToRange(currPressureVal, averagePressure, 0, 4)
       amSynth.envelope.sustain = sustain
     }
-
     counter = (counter + 1) % 16
+    socket.emit('counter', { counter })
   }
 
   // start()

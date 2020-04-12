@@ -23,12 +23,32 @@ board.on('ready', function () {
 
   strip.on('ready', function () {
     console.log("Strip ready, let's go")
-    const data = ['red', 'green', 'blue', 'yellow', 'cyan', 'magenta', 'white']
-    socket.on('Light', e => {
-      console.log(e)
-      strip.color(data[Math.floor(Math.random() * data.length)])
+    let currentColor
+    let pixelCount
+    let red = 0
+    let green = 0
+
+    socket.on('currTempVal', color => {
+      red = Math.floor(color)
+      green = Math.floor(Math.random() * 255) + 1
+    })
+
+    socket.on('counter', ({ counter }) => {
+      currentColor = counter * 17
+      pixelCount = counter === 0 ? 45 : counter * 3
+      for (var i = 0; i < pixelCount; i++) {
+        strip.pixel(i).color(`rgb(${red}, 0, ${currentColor})`)
+      }
       strip.show()
     })
+
+    socket.on('Light', color => {
+      strip.off()
+      green = Math.floor(Math.random() * 255) + 1
+      strip.color(`rgb(${green}, 0, ${green})`)
+      strip.show()
+    })
+
     socket.on('stop', e => {
       strip.off()
     })
